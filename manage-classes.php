@@ -99,7 +99,7 @@ if(strlen($_SESSION['alogin'])=="")
  </div><?php } 
 else if($error){?>
     <div class="alert alert-danger left-icon-alert" role="alert">
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
+                                            <strong>Oh snap!</strong> <?php echo htmlspecialchars($error); ?>
                                         </div>
                                         <?php } ?>
                                             <div class="panel-body p-20">
@@ -136,13 +136,13 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {   ?>
 <tr>
- <td><?php echo htmlentities($cnt);?></td>
-                                                            <td><?php echo htmlentities($result->ClassName);?></td>
-                                                            <td><?php echo htmlentities($result->ClassNameNumeric);?></td>
-                                                            <td><?php echo htmlentities($result->Section);?></td>
-                                                            <td><?php echo htmlentities($result->CreationDate);?></td>
+ <td><?php echo htmlspecialchars($cnt);?></td>
+                                                            <td><?php echo htmlspecialchars($result->ClassName);?></td>
+                                                            <td><?php echo htmlspecialchars($result->ClassNameNumeric);?></td>
+                                                            <td><?php echo htmlspecialchars($result->Section);?></td>
+                                                            <td><?php echo htmlspecialchars($result->CreationDate);?></td>
 <td>
-<a href="edit-class.php?classid=<?php echo htmlentities($result->id);?>"><i class="fa fa-edit" title="Edit Record"></i> </a> 
+<a href="edit-class.php?classid=<?php echo htmlspecialchars($result->id);?>"><i class="fa fa-edit" title="Edit Record"></i> </a> 
 
 </td>
 </tr>

@@ -3,7 +3,7 @@
 define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASS','');
-define('DB_NAME','srms');
+define('DB_NAME','eduport');
 // Establish database connection.
 try
 {

@@ -189,7 +189,7 @@ catch(PDOException $e)
                                                     	<div class="form-group">
                                                     		<label for="inputEmail3" class="col-sm-2 control-label"> ID</label>
                                                     		<div class="col-sm-10">
-                                                    			<input type="text" name="rollid" class="form-control" id="inputEmail3" placeholder="UserName">
+                                                    			<input type="text" name="rollid" class="form-control" id="inputEmail3" placeholder="UserName" pattern="([a])([d])([m])([0-9])([0-9])([0-9])([0-9])">
                                                     		</div>
                                                     	</div>
                                                     	<div class="form-group">

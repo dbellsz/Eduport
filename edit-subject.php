@@ -88,11 +88,11 @@ $msg="Subject Info updated successfully";
                                             <div class="panel-body">
 <?php if($msg){?>
 <div class="alert alert-success left-icon-alert" role="alert">
- <strong>Well done!</strong><?php echo htmlentities($msg); ?>
+ <strong>Well done!</strong><?php echo htmlspecialchars($msg); ?>
  </div><?php } 
 else if($error){?>
     <div class="alert alert-danger left-icon-alert" role="alert">
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
+                                            <strong>Oh snap!</strong> <?php echo htmlspecialchars($error); ?>
                                         </div>
                                         <?php } ?>
                                                 <form class="form-horizontal" method="post">
@@ -112,13 +112,13 @@ foreach($results as $result)
                                                     <div class="form-group">
                                                         <label for="default" class="col-sm-2 control-label">Subject Name</label>
                                                         <div class="col-sm-10">
- <input type="text" name="subjectname" value="<?php echo htmlentities($result->SubjectName);?>" class="form-control" id="default" placeholder="Subject Name" required="required">
+ <input type="text" name="subjectname" value="<?php echo htmlspecialchars($result->SubjectName);?>" class="form-control" id="default" placeholder="Subject Name" required="required">
                                                         </div>
                                                     </div>
 <div class="form-group">
                                                         <label for="default" class="col-sm-2 control-label">Subject Code</label>
                                                         <div class="col-sm-10">
- <input type="text" name="subjectcode" class="form-control" value="<?php echo htmlentities($result->SubjectCode);?>"  id="default" placeholder="Subject Code" required="required">
+ <input type="text" name="subjectcode" class="form-control" value="<?php echo htmlspecialchars($result->SubjectCode);?>"  id="default" placeholder="Subject Code" required="required">
                                                         </div>
                                                     </div>
                                                     <?php }} ?>

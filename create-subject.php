@@ -9,7 +9,11 @@ if(strlen($_SESSION['alogin'])=="")
     }
     else{
 if(isset($_POST['submit']))
+	
 {
+	if((isset($_POST["xsrf"]) && $_POST["xsrf"] == $_SESSION["xsrfValue"]))
+        {//start xsrf check
+	
 $subjectname=$_POST['subjectname'];
 $subjectcode=$_POST['subjectcode']; 
 $sql="INSERT INTO  tblsubjects(SubjectName,SubjectCode) VALUES(:subjectname,:subjectcode)";
@@ -26,7 +30,7 @@ else
 {
 $error="Something went wrong. Please try again";
 }
-
+		}
 }
 ?>
 <!DOCTYPE html>
@@ -95,11 +99,11 @@ $error="Something went wrong. Please try again";
                                             <div class="panel-body">
 <?php if($msg){?>
 <div class="alert alert-success left-icon-alert" role="alert">
- <strong>Well done!</strong><?php echo htmlentities($msg); ?>
+ <strong>Well done!</strong><?php echo htmlspecialchars($msg); ?>
  </div><?php } 
 else if($error){?>
     <div class="alert alert-danger left-icon-alert" role="alert">
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
+                                            <strong>Oh snap!</strong> <?php echo htmlspecialchars($error); ?>
                                         </div>
                                         <?php } ?>
                                                 <form class="form-horizontal" method="post">

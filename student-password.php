@@ -10,8 +10,11 @@ if(strlen($_SESSION['slogin'])=="")
     else{
 if(isset($_POST['submit']))
     {
-/*$password=md5($_POST['password']);
-$newpassword=md5($_POST['newpassword']);*/
+
+if((isset($_POST["xsrf"]) && $_POST["xsrf"] == $_SESSION["xsrfValue"]))
+        {//start xsrf check
+
+
 $rollid=$_SESSION['slogin'];
 
 $Password = $_POST['Password'];
@@ -130,7 +133,7 @@ $error="Your current password is wrong";
   
 }
 
-
+}
 
 }
 

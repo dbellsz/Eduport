@@ -5,7 +5,6 @@
 
 ?>
 
-<?php //include('includes/config.php') ?>
 <?php include('dbcon.php') ?>
 
 
@@ -42,12 +41,15 @@
                 $options = [
                     'cost' => 11,
                     'salt' =>  $salt,
-                    ];//got this  for http://php.net/manual/en/function.password-hash.php
+                    ];
+                //got this  for http://php.net/manual/en/function.password-hash.php
 
                    
             $Password = password_hash($Password, PASSWORD_BCRYPT, $options);
         }
 
+
+        // Insert values into database
 
     $query = "select * FROM tblstudents where RollId= :rollid AND Password= :Password";
     
@@ -57,11 +59,7 @@
             $stmt->execute();
             $result =$stmt->fetchAll(PDO::FETCH_OBJ);
            
-                //        $result =$stmt->fetchAll(PDO::FETCH_ ASSOC);
-
-
-
-            
+                        
 
             if(count($result) > 0)
            // Log User
@@ -75,7 +73,7 @@
                 
 
 
-   // $host  = $_SERVER['HTTP_HOST'];
+                                 // $host  = $_SERVER['HTTP_HOST'];
                               //  $_SESSION['username']=$_POST['username'];
                                 $ipaddress=$_SERVER['REMOTE_ADDR'];
                              //   $status=0;
@@ -98,17 +96,7 @@
 
 
 
-
-
-
-
-
-
-
-
-                echo "<script>alert('Invalid Details');</script>";
-
-
+                echo "<script>alert('Log in failed !!! /Invalid details');</script>";
 
 
         }
@@ -154,17 +142,13 @@ echo $_SESSION['timeouterr'];
     <p class="h4 mb-4">Sign in</p>
 
     <!-- Email -->
-    <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Student Roll ID" name="rollid" required>
+    <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Student Roll ID" name="rollid" pattern="([s])([t])([d])([0-9])([0-9])([0-9])([0-9])" required>
 
     <!-- Password -->
     <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name="Password" required>
 
     <div class="d-flex justify-content-around">
-       
-        <div>
-            <!-- Forgot password -->
-           <!--  <a href="">Forgot password?</a> -->
-        </div>
+  
     </div>
 
     <!-- Sign in button -->
