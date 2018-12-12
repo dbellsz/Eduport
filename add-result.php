@@ -152,11 +152,11 @@ var abh=clid+'$'+val;
                                             <div class="panel-body">
 <?php if($msg){?>
 <div class="alert alert-success left-icon-alert" role="alert">
- <strong>Well done!</strong><?php echo htmlentities($msg); ?>
+ <strong>Well done!</strong><?php echo htmlspecialchars($msg); ?>
  </div><?php } 
 else if($error){?>
     <div class="alert alert-danger left-icon-alert" role="alert">
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
+                                            <strong>Oh snap!</strong> <?php echo htmlspecialchars($error); ?>
                                         </div>
                                         <?php } ?>
                                                 <form class="form-horizontal" method="post">
@@ -174,7 +174,7 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {   ?>
-<option value="<?php echo htmlentities($result->id); ?>"><?php echo htmlentities($result->ClassName); ?>&nbsp; Section-<?php echo htmlentities($result->Section); ?></option>
+<option value="<?php echo htmlspecialchars($result->id); ?>"><?php echo htmlspecialchars($result->ClassName); ?>&nbsp; Section-<?php echo htmlspecialchars($result->Section); ?></option>
 <?php }} ?>
  </select>
                                                         </div>

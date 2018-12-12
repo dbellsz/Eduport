@@ -12,7 +12,8 @@ if(strlen($_SESSION['alogin'])=="")
 $stid=intval($_GET['stid']);
 if(isset($_POST['submit']))
 {
-
+if((isset($_POST["xsrf"]) && $_POST["xsrf"] == $_SESSION["xsrfValue"]))
+        {//start xsrf check
 $rowid=$_POST['id'];
 $marks=$_POST['marks']; 
 
@@ -28,6 +29,7 @@ $query->bindParam(':iid',$iid,PDO::PARAM_STR);
 $query->execute();
 
 $msg="Result info updated successfully";
+}
 }
 }
 }
@@ -99,11 +101,11 @@ $msg="Result info updated successfully";
                                             <div class="panel-body">
 <?php if($msg){?>
 <div class="alert alert-success left-icon-alert" role="alert">
- <strong>Well done!</strong><?php echo htmlentities($msg); ?>
+ <strong>Well done!</strong><?php echo htmlspecialchars($msg); ?>
  </div><?php } 
 else if($error){?>
     <div class="alert alert-danger left-icon-alert" role="alert">
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
+                                            <strong>Oh snap!</strong> <?php echo htmlspecialchars($error); ?>
                                         </div>
                                         <?php } ?>
                                                 <form class="form-horizontal" method="post">
@@ -125,13 +127,13 @@ foreach($result as $row)
                                                     <div class="form-group">
                                             <label for="default" class="col-sm-2 control-label">Class</label>
                                                         <div class="col-sm-10">
-<?php echo htmlentities($row->ClassName)?>(<?php echo htmlentities($row->Section)?>)
+<?php echo htmlspecialchars($row->ClassName)?>(<?php echo htmlspecialchars($row->Section)?>)
                                                         </div>
                                                     </div>
 <div class="form-group">
 <label for="default" class="col-sm-2 control-label">Full Name</label>
 <div class="col-sm-10">
-<?php echo htmlentities($row->StudentName);?>
+<?php echo htmlspecialchars($row->StudentName);?>
 </div>
 </div>
 <?php } }?>
@@ -153,10 +155,10 @@ foreach($results as $result)
 
 
 <div class="form-group">
-<label for="default" class="col-sm-2 control-label"><?php echo htmlentities($result->SubjectName)?></label>
+<label for="default" class="col-sm-2 control-label"><?php echo htmlspecialchars($result->SubjectName)?></label>
 <div class="col-sm-10">
-<input type="hidden" name="id[]" value="<?php echo htmlentities($result->resultid)?>">
-<input type="text" name="marks[]" class="form-control" id="marks" value="<?php echo htmlentities($result->marks)?>" maxlength="5" required="required" autocomplete="off">
+<input type="hidden" name="id[]" value="<?php echo htmlspecialchars($result->resultid)?>">
+<input type="text" name="marks[]" class="form-control" id="marks" value="<?php echo htmlspecialchars($result->marks)?>" maxlength="5" required="required" autocomplete="off">
 </div>
 </div>
 

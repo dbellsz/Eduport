@@ -15,9 +15,11 @@ error_reporting(E_ALL);
   ini_set("display_errors", 1);
 
   // if the register button is clicked
-  // Escape variables for security to prevent xss
+  
   if (isset($_POST['submit']))
   {
+
+    // Escape variables for security to prevent xss
     $studentname = $_POST['fullname'];
     $roolid = $_POST['rollid'];
     $classid = $_POST['stclass'];
@@ -25,10 +27,7 @@ error_reporting(E_ALL);
     $dob = $_POST['dob'];
     $Password = $_POST['Password'];
     $RPassword = $_POST['RPassword'];
-    $gender = $_POST['gender'];
-   
-
-      
+    $gender = $_POST['gender'];      
     
 
     //Password check
@@ -43,26 +42,19 @@ error_reporting(E_ALL);
 
     else{
 
-
-
-
-
+      //got this random generator for http://php.net/manual/en/function.password-hash.php
       $options = [
         'cost' => 11,
         'salt' =>  mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
-         ];//got this random generator for http://php.net/manual/en/function.password-hash.php
+         ];
+         
+
     $salt = $options['salt'];
-    //save user to database
+    
     //Encrypt password in db using Bcrypt hash
     if (count($errors)==0){
       $Password=password_hash($Password, PASSWORD_BCRYPT,$options);
     
-
-     /* $sql="INSERT INTO  tblstudents (StudentName,RollId,StudentEmail,Gender, DOB,ClassId,Status,Password,salt) 
-        VALUES (:studentname,:roolid,:studentemail,:gender,:dob,:classid,:status,:Password,:salt)";*/
-/*$sql= "INSERT INTO tblstudents (StudentName, RollId, StudentEmail, Gender, DOB, ClassId, RegDate, Status, Password, salt) VALUES ($studentname,$roolid,$studentemail,$gen
-der,$dob,$classid,$status,$Password,$salt);";
-*/   
 
 
     $queryRollId = "select * FROM tblstudents where Rollid = :rollid AND StudentEmail= :studentemail";
@@ -91,6 +83,7 @@ else{
     
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    //save user to database
      $sql="INSERT INTO  tblstudents (StudentName,StudentEmail,RollId,Gender, DOB,ClassId,Password,salt) 
         VALUES (:studentname,:studentemail,:rollid,:gender,:dob,:classid,:Password,:salt)";
 
@@ -140,9 +133,9 @@ catch(PDOException $e)
 
 
 
- /*    $_SESSION['Stdid'] = $Stdid;*/
+  $_SESSION['Stdid'] = $Stdid;
       $_SESSION['success'] = "You are now Registered.";
-     // header('location:student-login.php'); //go back to homepage
+     header('location:index.php'); //go back to homepage
     }
       }
         
@@ -224,7 +217,7 @@ catch(PDOException $e)
         </div>
         <div class="col">
             <!-- Roll id -->
-            <input type="text" id="defaultRegisterFormLastName" class="form-control" name="rollid" placeholder="Student Roll" maxlength="7" autocomplete="off" pattern="([s])([t])([d])([0-9])([0-9])([0-9])([0-9])" required>
+            <input type="text" id="defaultRegisterFormLastName" class="form-control" name="rollid" placeholder="Student Roll"  autocomplete="off" pattern="([s])([t])([d])([0-9])([0-9])([0-9])([0-9])" tooltip="Invalid Input" required>
         </div>
     </div>
 
@@ -234,7 +227,7 @@ catch(PDOException $e)
     <!-- Password -->
     <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="Password" minlength="10" required>
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-        1 Upper case, 1 Lower case and at least 8 characters and 1 digit
+        1 Upper case, 1 digit and at least 8 characters 
     </small>
 
        <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Re-enter Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="RPassword" required>
@@ -243,14 +236,15 @@ catch(PDOException $e)
     </small>
 
       <!-- Default inline 1-->
+
 			<div class="custom-control custom-radio custom-control-inline">
-			  <input type="radio" class="custom-control-input" value="Male" id="defaultInline1" name="gender">
+			  <input type="radio" class="custom-control-input" value="Male" id="defaultInline1" name="gender" required>
 			  <label class="custom-control-label" for="defaultInline1">Male</label>
 			</div>
 
 			<!-- Default inline 2-->
 			<div class="custom-control custom-radio custom-control-inline">
-			  <input type="radio" class="custom-control-input" value="Female" id="defaultInline2" name="gender">
+			  <input type="radio" class="custom-control-input" value="Female" id="defaultInline2" name="gender" required>
 			  <label class="custom-control-label" for="defaultInline2">Female</label>
 			</div>
 

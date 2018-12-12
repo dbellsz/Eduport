@@ -10,18 +10,21 @@ if(strlen($_SESSION['alogin'])=="")
     else{
 if(isset($_POST['update']))
 {
-$classname=$_POST['classname'];
-$classnamenumeric=$_POST['classnamenumeric']; 
-$section=$_POST['section'];
-$cid=intval($_GET['classid']);
-$sql="update  tblclasses set ClassName=:classname,ClassNameNumeric=:classnamenumeric,Section=:section where id=:cid ";
-$query = $dbh->prepare($sql);
-$query->bindParam(':classname',$classname,PDO::PARAM_STR);
-$query->bindParam(':classnamenumeric',$classnamenumeric,PDO::PARAM_STR);
-$query->bindParam(':section',$section,PDO::PARAM_STR);
-$query->bindParam(':cid',$cid,PDO::PARAM_STR);
-$query->execute();
-$msg="Data has been updated successfully";
+	if((isset($_POST["xsrf"]) && $_POST["xsrf"] == $_SESSION["xsrfValue"]))
+        {//start xsrf check
+	$classname=$_POST['classname'];
+	$classnamenumeric=$_POST['classnamenumeric']; 
+	$section=$_POST['section'];
+	$cid=intval($_GET['classid']);
+	$sql="update  tblclasses set ClassName=:classname,ClassNameNumeric=:classnamenumeric,Section=:section where id=:cid ";
+	$query = $dbh->prepare($sql);
+	$query->bindParam(':classname',$classname,PDO::PARAM_STR);
+	$query->bindParam(':classnamenumeric',$classnamenumeric,PDO::PARAM_STR);
+	$query->bindParam(':section',$section,PDO::PARAM_STR);
+	$query->bindParam(':cid',$cid,PDO::PARAM_STR);
+	$query->execute();
+	$msg="Data has been updated successfully";
+		}
 }
 ?>
 <!DOCTYPE html>
@@ -97,7 +100,7 @@ $msg="Data has been updated successfully";
  </div><?php } 
 else if($error){?>
     <div class="alert alert-danger left-icon-alert" role="alert">
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
+                                            <strong>Oh snap!</strong> <?php echo htmlspecialchars($error); ?>
                                         </div>
                                         <?php } ?>
 
@@ -118,21 +121,21 @@ foreach($results as $result)
                                                     <div class="form-group has-success">
                                                         <label for="success" class="control-label">Class Name</label>
                                                 		<div class="">
-                                                			<input type="text" name="classname" value="<?php echo htmlentities($result->ClassName);?>" required="required" class="form-control" id="success">
+                                                			<input type="text" name="classname" value="<?php echo htmlspecialchars($result->ClassName);?>" required="required" class="form-control" id="success">
                                                             <span class="help-block">Eg- Third, Fouth,Sixth etc</span>
                                                 		</div>
                                                 	</div>
                                                        <div class="form-group has-success">
                                                         <label for="success" class="control-label">Class Name in Numeric</label>
                                                         <div class="">
-                                                            <input type="number" name="classnamenumeric" value="<?php echo htmlentities($result->ClassNameNumeric);?>" required="required" class="form-control" id="success">
+                                                            <input type="number" name="classnamenumeric" value="<?php echo htmlspecialchars($result->ClassNameNumeric);?>" required="required" class="form-control" id="success">
                                                             <span class="help-block">Eg- 1,2,4,5 etc</span>
                                                         </div>
                                                     </div>
                                                      <div class="form-group has-success">
                                                         <label for="success" class="control-label">Section</label>
                                                         <div class="">
-                                                            <input type="text" name="section" value="<?php echo htmlentities($result->Section);?>" class="form-control" required="required" id="success">
+                                                            <input type="text" name="section" value="<?php echo htmlspecialchars($result->Section);?>" class="form-control" required="required" id="success">
                                                             <span class="help-block">Eg- A,B,C etc</span>
                                                         </div>
                                                     </div>

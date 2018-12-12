@@ -15,7 +15,7 @@
 
 
  	//connecting the mysql server
-    $DSN ="mysql:host=localhost;dbname=srms";
+    $DSN ="mysql:host=localhost;dbname=eduport";
     $usernamedb="root";
     $passworddb="";
     $dbh=new PDO ($DSN,$usernamedb,$passworddb);

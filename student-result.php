@@ -80,7 +80,7 @@ $value=$query2->fetchAll(PDO::FETCH_ASSOC);
 
 //get value from the array query 2
 if(count($value) > 0){
-    echo "bruno";
+   
                 foreach($value as $rowvalue){
                     $classid = $rowvalue['ClassId'];
                 }
@@ -103,9 +103,9 @@ foreach($resultss as $row)
 {   ?>
 
 
-<p><b>Student Name :</b> <?php echo htmlentities($row->StudentName);?></p>
-<p><b>Student Roll Id :</b> <?php echo htmlentities($row->RollId);?>
-<p><b>Student Class:</b> <?php echo htmlentities($row->ClassName);?>(<?php echo htmlentities($row->Section);?>)
+<p><b>Student Name :</b> <?php echo htmlspecialchars($row->StudentName);?></p>
+<p><b>Student Roll Id :</b> <?php echo htmlspecialchars($row->RollId);?>
+<p><b>Student Class:</b> <?php echo htmlspecialchars($row->ClassName);?>(<?php echo htmlspecialchars($row->Section);?>)
 <?php }
 
     ?>
@@ -149,9 +149,9 @@ foreach($results as $result){
     ?>
 
                                                 		<tr>
-                                                <th scope="row"><?php echo htmlentities($cnt);?></th>
-                                                			<td><?php echo htmlentities($result->SubjectName);?></td>
-                                                			<td><?php echo htmlentities($totalmarks=$result->marks);?></td>
+                                                <th scope="row"><?php echo htmlspecialchars($cnt);?></th>
+                                                			<td><?php echo htmlspecialchars($result->SubjectName);?></td>
+                                                			<td><?php echo htmlspecialchars($totalmarks=$result->marks);?></td>
                                                 		</tr>
 <?php 
 $totlcount+=$totalmarks;
@@ -159,11 +159,11 @@ $cnt++;}
 ?>
 <tr>
                                                 <th scope="row" colspan="2">Total Marks</th>
-<td><b><?php echo htmlentities($totlcount); ?></b> out of <b><?php echo htmlentities($outof=($cnt-1)*100); ?></b></td>
+<td><b><?php echo htmlspecialchars($totlcount); ?></b> out of <b><?php echo htmlspecialchars($outof=($cnt-1)*100); ?></b></td>
                                                         </tr>
 <tr>
                                                 <th scope="row" colspan="2">Percntage</th>           
-                                                            <td><b><?php echo  htmlentities($totlcount*(100)/$outof); ?> %</b></td>
+                                                            <td><b><?php echo  htmlspecialchars($totlcount*(100)/$outof); ?> %</b></td>
                                                              </tr>
 <tr>
                                                 <th scope="row" colspan="2">Download Result</th>           
@@ -172,7 +172,7 @@ $cnt++;}
 
  <?php } else { ?>     
 <div class="alert alert-warning left-icon-alert" role="alert">
-                                            <strong>Notice!</strong> Your result not declare yet
+                                            <strong>Notice!</strong> Your result hasn't been declared yet
  <?php }
 ?>
                                         </div>
@@ -183,7 +183,7 @@ $cnt++;}
 <div class="alert alert-danger left-icon-alert" role="alert">
 strong>Oh snap!</strong>
 <?php
-echo htmlentities("Invalid Roll Id");
+echo htmlspecialchars("Invalid Roll Id");
  }
 ?>
                                         </div>

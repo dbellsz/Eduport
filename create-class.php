@@ -118,11 +118,11 @@ $error="Something went wrong. Please try again";
                                             </div>
            <?php if($msg){?>
 <div class="alert alert-success left-icon-alert" role="alert">
- <strong>Well done!</strong><?php echo htmlentities($msg); ?>
+ <strong>Well done!</strong><?php echo htmlspecialchars($msg); ?>
  </div><?php } 
 else if($error){?>
     <div class="alert alert-danger left-icon-alert" role="alert">
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
+                                            <strong>Oh snap!</strong> <?php echo htmlspecialchars($error); ?>
                                         </div>
                                         <?php } ?>
   

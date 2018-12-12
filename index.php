@@ -176,19 +176,12 @@ echo $_SESSION['timeouterr'];
     <!-- Password -->
     <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name="Password" required>
 
-    <div class="d-flex justify-content-around">
-       
-        <div>
-            <!-- Forgot password -->
-           <!--  <a href="">Forgot password?</a> -->
-        </div>
-    </div>
 
     <!-- Sign in button -->
     <button class="btn btn-info btn-block my-4" type="submit"  name="login">Sign in</button>
 
     <!-- Register -->
-    <p>New here?
+    <p>Don't have an account yet ?
         <a href="student-register.php">Register</a>
     </p>
 
@@ -198,7 +191,7 @@ echo $_SESSION['timeouterr'];
      
         </div>
           <div class="container-fluid">
-    </div>
+          </div>
 
 </body>
 </html>

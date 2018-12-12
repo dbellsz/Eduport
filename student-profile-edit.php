@@ -8,9 +8,7 @@ if (empty($_SESSION['slogin']))
     {
         header('location:index.php');
     }
-    else{
-        
-$_SESSION['xsrfValue'] = ;
+    else{        
 
 
 $stid=intval($_GET['stid']);
@@ -18,7 +16,7 @@ $stid=intval($_GET['stid']);
 if(isset($_POST['submit']))
 {
 
-    if((isset($_POST["xsrf"]) && $_POST["xsrf"] == $_SESSION["xsrfValue"])
+    if((isset($_POST["xsrf"]) && $_POST["xsrf"] == $_SESSION["xsrfValue"]))
         {//start xsrf check
 
 $studentname=$_POST['fullanme'];
@@ -62,12 +60,11 @@ $ipaddress=$_SERVER['REMOTE_ADDR'];
 
 }// end xsrf
 
-
 }
 
 
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -181,6 +178,7 @@ foreach($results as $result)
 <div class="form-group">
 <label for="default" class="col-sm-2 control-label">Gender</label>
 <div class="col-sm-10">
+
 <?php  $gndr=$result->Gender;
 if($gndr=="Male")
 {

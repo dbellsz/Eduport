@@ -96,11 +96,11 @@ if(strlen($_SESSION['alogin'])=="")
                                             </div>
 <?php if($msg){?>
 <div class="alert alert-success left-icon-alert" role="alert">
- <strong>Well done!</strong><?php echo htmlentities($msg); ?>
+ <strong>Well done!</strong><?php echo htmlspecialchars($msg); ?>
  </div><?php } 
 else if($error){?>
     <div class="alert alert-danger left-icon-alert" role="alert">
-                                            <strong>Oh snap!</strong> <?php echo htmlentities($error); ?>
+                                            <strong>Oh snap!</strong> <?php echo htmlspecialchars($error); ?>
                                         </div>
                                         <?php } ?>
                                             <div class="panel-body p-20">
@@ -137,20 +137,20 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {   ?>
 <tr>
- <td><?php echo htmlentities($cnt);?></td>
-                                                            <td><?php echo htmlentities($result->StudentName);?></td>
-                                                            <td><?php echo htmlentities($result->RollId);?></td>
-                                                            <td><?php echo htmlentities($result->ClassName);?>(<?php echo htmlentities($result->Section);?>)</td>
-                                                            <td><?php echo htmlentities($result->RegDate);?></td>
+ <td><?php echo htmlspecialchars($cnt);?></td>
+                                                            <td><?php echo htmlspecialchars($result->StudentName);?></td>
+                                                            <td><?php echo htmlspecialchars($result->RollId);?></td>
+                                                            <td><?php echo htmlspecialchars($result->ClassName);?>(<?php echo htmlspecialchars($result->Section);?>)</td>
+                                                            <td><?php echo htmlspecialchars($result->RegDate);?></td>
                                                              <td><?php if($result->Status==1){
-echo htmlentities('Active');
+echo htmlspecialchars('Active');
 }
 else{
-   echo htmlentities('Blocked'); 
+   echo htmlspecialchars('Blocked'); 
 }
                                                                 ?></td>
 <td>
-<a href="edit-result.php?stid=<?php echo htmlentities($result->StudentId);?>"><i class="fa fa-edit" title="Edit Record"></i> </a> 
+<a href="edit-result.php?stid=<?php echo htmlspecialchars($result->StudentId);?>"><i class="fa fa-edit" title="Edit Record"></i> </a> 
 
 </td>
 </tr>

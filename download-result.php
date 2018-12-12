@@ -64,8 +64,8 @@ $stmt21->execute();
                    while($result=$res1->fetch_object())
                   {  ?>
 <p><b>Student Name :</b> <?php echo htmlentities($result->StudentName);?></p>
-<p><b>Student Roll Id :</b> <?php echo htmlentities($result->RollId);?>
-<p><b>Student Class:</b> <?php echo htmlentities($result->ClassName);?>(<?php echo htmlentities($result->Section);?>)
+<p><b>Student Roll Id :</b> <?php echo htmlspecialchars($result->RollId);?>
+<p><b>Student Class:</b> <?php echo htmlspecialchars($result->ClassName);?>(<?php echo htmlspecialchars($result->Section);?>)
 <?php }
 
     ?>
@@ -98,9 +98,9 @@ $stmt->execute();
     ?>
 
                                                     <tr>
-                                                <td ><?php echo htmlentities($cnt);?></td>
-                                                      <td><?php echo htmlentities($row->SubjectName);?></td>
-                                                      <td><?php echo htmlentities($totalmarks=$row->marks);?></td>
+                                                <td ><?php echo htmlspecialchars($cnt);?></td>
+                                                      <td><?php echo htmlspecialchars($row->SubjectName);?></td>
+                                                      <td><?php echo htmlspecialchars($totalmarks=$row->marks);?></td>
                                                     </tr>
 <?php 
 $totlcount+=$totalmarks;
@@ -108,11 +108,11 @@ $cnt++;}
 ?>
 <tr>
                                                 <th scope="row" colspan="2">Total Marks</th>
-<td><b><?php echo htmlentities($totlcount); ?></b> out of <b><?php echo htmlentities($outof=($cnt-1)*100); ?></b></td>
+<td><b><?php echo htmlspecialchars($totlcount); ?></b> out of <b><?php echo htmlspecialchars($outof=($cnt-1)*100); ?></b></td>
                                                         </tr>
 <tr>
                                                 <th scope="row" colspan="2">Percntage</th>           
-                                                            <td><b><?php echo  htmlentities($totlcount*(100)/$outof); ?> %</b></td>
+                                                            <td><b><?php echo  htmlspecialchars($totlcount*(100)/$outof); ?> %</b></td>
                                                              </tr>
 
                             </tbody>

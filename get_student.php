@@ -14,7 +14,7 @@ if(!empty($_POST["classid"]))
  while($row=$stmt->fetch(PDO::FETCH_ASSOC))
  {
   ?>
-  <option value="<?php echo htmlentities($row['StudentId']); ?>"><?php echo htmlentities($row['StudentName']); ?></option>
+  <option value="<?php echo htmlspecialchars($row['StudentId']); ?>"><?php echo htmlspecialchars($row['StudentName']); ?></option>
   <?php
  }
 }
@@ -26,7 +26,7 @@ if(!empty($_POST["classid1"]))
  $cid1=intval($_POST['classid1']);
  if(!is_numeric($cid1)){
  
-  echo htmlentities("invalid Class");exit;
+  echo htmlspecialchars("invalid Class");exit;
  }
  else{
  $status=0;	
@@ -35,7 +35,7 @@ if(!empty($_POST["classid1"]))
  
  while($row=$stmt->fetch(PDO::FETCH_ASSOC))
  {?>
-  <p> <?php echo htmlentities($row['SubjectName']); ?><input type="text"  name="marks[]" value="" class="form-control" required="" placeholder="Enter marks out of 100" autocomplete="off"></p>
+  <p> <?php echo htmlspecialchars($row['SubjectName']); ?><input type="text"  name="marks[]" value="" class="form-control" required="" placeholder="Enter marks out of 100" autocomplete="off"></p>
   
 <?php  }
 }
